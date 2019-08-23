@@ -14,9 +14,15 @@ const UserSchema = new mongoose.Schema({
         required: true
     },
     date: {
-        type: String,
+        type: Date,
         default: Date.now()
+    },
+    books: {
+        type: Array,
+        required: false
     }
 });
+
+const User = mongoose.model('User', UserSchema);
 
 module.exports = User;

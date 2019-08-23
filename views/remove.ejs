@@ -1,0 +1,23 @@
+<h1 class="mt-4">Remove Books</h1>
+<p class="lead mb-3">
+<h3>
+    Your Books
+</h3>
+<%var i = 0;
+var Books = user.books;
+%>
+<% Books.forEach(function (book) { %>
+    <ul>
+        <%= book %>
+        <button class="x" onclick="<%removeBook(i)%>">Remove</button>
+        <%i = i+1%>
+    </ul>
+<% }); %>
+<% %>
+</p>
+<%function removeBook(index) { %>
+    <%Books.splice(index, 1);%>
+<% } %>
+<a href="/add" class="btn btn-secondary" >Add Books</a>
+<a href="/dashboard" class="btn btn-secondary" >Dashboard</a>
+<a href="/users/logout" class="btn btn-secondary" >Logout</a>

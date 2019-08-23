@@ -1,0 +1,37 @@
+<div class="jumbotron">
+    <h1 class="mt-4">Dashboard</h1>
+    <p class="lead mb-3">Welcome <%= user.name %></p>
+    <p class="lead mb-3">
+        <h3>
+            Your Books
+        </h3>
+            <% user.books.forEach(function (book) { %>
+                <ul>
+                    <%= book %> <button class="btn btn-outline-danger" onclick="hey">Remove</button>
+                </ul>
+            <% }); %>
+    </p>
+    <form action="/dashboard" method="POST">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input
+                    type="name"
+                    id="name"
+                    name="name"
+                    class="form-control"
+                    placeholder="Enter Book Name"
+                    value="<%= typeof name != 'undefined' ? name : '' %>"
+            />
+            <% include ./partials/messages %>
+            <br>
+            <button type="submit" class="btn btn-outline-success">
+                Add Book
+            </button>
+        </div>
+    </form>
+    <br>
+    <a href="/users/logout" class="btn btn-secondary" >Borrow Books</a>
+    <br>
+    <br>
+    <a href="/users/logout" class="btn btn-secondary" >Logout</a>
+</div>
