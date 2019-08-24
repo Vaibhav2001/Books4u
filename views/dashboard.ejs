@@ -11,7 +11,7 @@
                 </ul>
             <% }); %>
     </p>
-    <form action="/dashboard" method="POST">
+    <form action="/add" method="POST">
         <div class="form-group">
             <label for="name">Name</label>
             <input
@@ -20,7 +20,7 @@
                     name="name"
                     class="form-control"
                     placeholder="Enter Book Name"
-                    value="<%= typeof name != 'undefined' ? name : '' %>"
+                    value="<%= typeof name != 'undefined' ? name: '' %>"
             />
             <% include ./partials/messages %>
             <br>
@@ -30,8 +30,10 @@
         </div>
     </form>
     <br>
-    <a href="/users/logout" class="btn btn-secondary" >Borrow Books</a>
+    <a href="/add" class="btn btn-secondary" >Borrow Books</a>
     <br>
     <br>
     <a href="/users/logout" class="btn btn-secondary" >Logout</a>
+    <br>
+    <br>
 </div>
