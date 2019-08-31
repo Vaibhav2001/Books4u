@@ -16,16 +16,11 @@ mongoose
 
 const User = mongoose.model('User');
 // Dashboard
-router.get('/dashboard', ensureAuthenticated, (req, res) => {
+router.get('/dashboard', ensureAuthenticated, (req, res) =>
     res.render('dashboard', {
         user: req.user
     })
-});
-
-router.post('/dashboard', ensureAuthenticated, (req, res) => {
-    req.flash('success_msg', 'Book added, Reload to view the changes');
-    res.redirect('dashboard')
-});
+);
 
 // Add
 router.post('/add', ensureAuthenticated, (req, res) => {
@@ -39,10 +34,10 @@ router.post('/add', ensureAuthenticated, (req, res) => {
         {"email" : req.user.email},
         {$set: { "books" : newBooks}});
     console.log(req.user.books);
-    req.flash('success_msg', 'Book added, Reload to view the changes');
-    // res.render('dashboard', {
-    //     user: req.user
-    // });
+    req.flash('success_msg', 'Book added');
+    res.render('dashboard', {
+        user: req.user
+    });
 });
 
 
