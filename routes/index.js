@@ -29,12 +29,12 @@ router.get('/donated', ensureAuthenticated, (req, res) =>
     })
 );
 
-// //Borrow
-// router.get('/borrow', ensureAuthenticated, (req, res) =>
-//     res.render('borrow', {
-//         users: req.users
-//     })
-// );
+//Search
+router.get('/search', ensureAuthenticated, (req, res) =>
+    res.render('search', {
+        users: req.users
+    })
+);
 
 // Add
 router.post('/add', ensureAuthenticated, (req, res) => {
@@ -111,7 +111,6 @@ router.post('/search', ensureAuthenticated, async(req, res) => {
     User.find( { books: { $in: regex  } } )
         .then(users => {
             console.log(users);
-            res.send(users);
             res.render('search', {
                 users: users
             })
