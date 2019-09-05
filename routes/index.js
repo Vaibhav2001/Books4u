@@ -111,6 +111,11 @@ router.post('/search', ensureAuthenticated, async(req, res) => {
     User.find( { books: { $in: regex  } } )
         .then(users => {
             console.log(users);
+            users.forEach(function (user) {
+                user.books.forEach(function (book) {
+                        //code here
+                })
+            });
             res.render('search', {
                 users: users
             })
