@@ -6,12 +6,14 @@
             </h3>
         <% users_with_books.forEach(function (user_with_book) { %>
                 <ul>
-                        <h5><b><%= user_with_book[0].name%></b> --- <%= user_with_book[0].email%></h5>
-                        <%= user_with_book[1] %>
-                        <br>
-                    </ul>
+                    <h5><b><%= user_with_book[0].name%></b> --- <%= user_with_book[0].email%></h5>
+                    <% user_with_book[1].forEach(function (book) { %>
+                    <ul>
+                        <%= book%>
+                    </ul>
+                    <% }); %>
+                </ul>
             <% }); %>
-        </p>
         <br>
         <a href="/dashboard" class="btn btn-secondary" >Dashboard</a>
         <br>

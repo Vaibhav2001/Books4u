@@ -9,6 +9,8 @@ router.get('/', forwardAuthenticated, (req, res) => res.redirect('/users/login')
 //DB Config
 const db = require('../config/keys').MongoURI;
 
+var BreakException = {};
+
 mongoose
     .connect(db, {useNewUrlParser: true})
     .then(() => console.log('MongoDB Connected'))
@@ -18,8 +20,8 @@ const User = mongoose.model('User');
 // Dashboard
 router.get('/dashboard', ensureAuthenticated, (req, res) =>
     res.render('dashboard', {
-    user: req.user
-})
+        user: req.user
+    })
 );
 
 // Donated Books
@@ -115,12 +117,24 @@ router.post('/search', ensureAuthenticated, async(req, res) => {
             users.forEach(function (user) {
                 let rel_books = [];
                 user.books.forEach(function (book) {
-                    regex.forEach(function (reg) {
-                        if(reg.test(book)) {
-                            rel_books.push(book);
-                        }
-                        break;
-                    });
+
+                    try {
+                        regex.forEach(function (reg) {
+
+                            if(reg.test(book)) {
+                                rel_books.push(book);
+                                throw BreakException;
+                            }
+
+
+                        });
+                    }
+                    catch (e) {
+                        console.log("BROKEN");
+                        if (e !== BreakException) throw e;
+
+                    }
+
                 });
                 usersWithRel.push([user, rel_books]);
             });
