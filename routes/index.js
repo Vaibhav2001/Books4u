@@ -105,21 +105,28 @@ router.post('/search', ensureAuthenticated, async(req, res) => {
     const { name } = req.body;
     console.log(name);
     var words = name.split(" ");
-    const regex = words.map(e=>new RegExp(e));
+    var regex = words.map(e=>new RegExp(e));
     console.log(regex);
 
-    User.find( { books: { $in: regex  } } )
+    User.find( { books: { $in: regex  } } )
         .then(users => {
-            console.log(users);
-            users.forEach(function (user) {
-                user.books.forEach(function (book) {
-                    if(regex.test(book)) {
+            let usersWithRel = [];
 
-                    }
-                })
+            users.forEach(function (user) {
+                let rel_books = [];
+                user.books.forEach(function (book) {
+                    regex.forEach(function (reg) {
+                        if(reg.test(book)) {
+                            rel_books.push(book);
+                        }
+                        break;
+                    });
+                });
+                usersWithRel.push([user, rel_books]);
             });
+            console.log(usersWithRel);
             res.render('search', {
-                users: users
+                users_with_books: usersWithRel
             })
         });
 });
