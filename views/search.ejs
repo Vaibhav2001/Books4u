@@ -6,6 +6,7 @@
     </h3>
     <% users.forEach(function (user) { %>
         <ul>
+            <h5><b><%= user.name%></b> --- <%= user.email%></h5>
             <%= user.books %>
             <br>
         </ul>
