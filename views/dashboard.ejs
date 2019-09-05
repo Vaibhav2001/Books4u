@@ -30,7 +30,7 @@
     </p>
     <form action="/add" method="POST">
         <div class="form-group">
-            <label for="name">Name</label>
+            <label for="name"><h3>Add Your Books</h3></label>
             <input
                     type="name"
                     id="name"
@@ -46,9 +46,23 @@
             </button>
         </div>
     </form>
-    <br>
-    <a href="/borrow" class="btn btn-secondary" >Borrow Books</a>
-    <br>
+    <form action="/search" method="POST">
+        <div class="form-group">
+            <label for="name"><h3>Search Books</h3></label>
+            <input
+                    type="name"
+                    id="name"
+                    name="name"
+                    class="form-control"
+                    placeholder="Enter Book Name"
+                    value="<%= typeof name != 'undefined' ? name: '' %>"
+            />
+            <br>
+            <button type="submit" class="btn btn-outline-success">
+                Search Books
+            </button>
+        </div>
+    </form>
     <br>
     <a href="/donated" class="btn btn-secondary" >My Donated Books</a>
     <br>

@@ -29,12 +29,12 @@ router.get('/donated', ensureAuthenticated, (req, res) =>
     })
 );
 
-//Borrow
-router.get('/borrow', ensureAuthenticated, (req, res) =>
-    res.render('borrow', {
-        user: req.user
-    })
-);
+// //Borrow
+// router.get('/borrow', ensureAuthenticated, (req, res) =>
+//     res.render('borrow', {
+//         users: req.users
+//     })
+// );
 
 // Add
 router.post('/add', ensureAuthenticated, (req, res) => {
@@ -103,22 +103,19 @@ router.post('/donate', ensureAuthenticated, (req, res) => {
 router.post('/search', ensureAuthenticated, async(req, res) => {
     const { name } = req.body;
     console.log(name);
+    var words = name.split(" ");
+    const regex = words.map(e=>new RegExp(e)); // [/Harry/, /Potter/, /Killer/
+    console.log(regex);
     //I want to get the username and that specific data printed which is inside an array called books
-    const Results = await User.find( { $text: { $search: name } } );
-    console.log(Results);
-    res.redirect('borrow');
+    User.find( { books: { $in: regex  } } )
+        .then(users => {
+            console.log(users);
+            res.send(users);
+            res.render('search', {
+                users: users
+            })
+        });
+    res.render('search')
 });
-
-// function pagelist(items) {
-//     result = "<html><body><ul>";
-//     items.forEach(function(item) {
-//         itemstring = "<li>" + item._id + "<ul><li>" + item.textScore +
-//             "</li><li>" + item.created + "</li><li>" + item.document +
-//             "</li></ul></li>";
-//         result = result + itemstring;
-//     });
-//     result = result + "</ul></body></html>";
-//     return result;
-// }
 
 module.exports = router;
