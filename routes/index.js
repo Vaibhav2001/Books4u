@@ -113,7 +113,9 @@ router.post('/search', ensureAuthenticated, async(req, res) => {
             console.log(users);
             users.forEach(function (user) {
                 user.books.forEach(function (book) {
-                        //code here
+                    if(regex.test(book)) {
+
+                    }
                 })
             });
             res.render('search', {
