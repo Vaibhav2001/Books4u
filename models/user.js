@@ -20,6 +20,10 @@ const UserSchema = new mongoose.Schema({
     books: {
         type: Array,
         required: false
+    },
+    DonatedBooks: {
+        type: Array,
+        required: false
     }
 });
 

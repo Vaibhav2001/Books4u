@@ -1,0 +1,33 @@
+<div class="jumbotron">
+    <h1 class="mt-4">Borrow Books</h1>
+    <p class="lead mb-3">Welcome <%= user.name %></p>
+    <p class="lead mb-3">
+    <h3>
+        Enter Book Name
+    </h3>
+    </p>
+    <form action="/search" method="POST">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input
+                    type="name"
+                    id="name"
+                    name="name"
+                    class="form-control"
+                    placeholder="Enter Book Name"
+                    value="<%= typeof name != 'undefined' ? name: '' %>"
+            />
+            <br>
+            <button type="submit" class="btn btn-outline-success">
+                Search for Book
+            </button>
+        </div>
+    </form>
+    <br>
+    <a href="/dashboard" class="btn btn-secondary" >Dashboard</a>
+    <br>
+    <br>
+    <a href="/users/logout" class="btn btn-secondary" >Logout</a>
+    <br>
+    <br>
+</div>

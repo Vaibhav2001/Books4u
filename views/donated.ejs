@@ -1,0 +1,22 @@
+<div class="jumbotron">
+    <h1 class="mt-4">My Donated Books</h1>
+    <p class="lead mb-3">Welcome <%= user.name %></p>
+    <p class="lead mb-3">
+    <h3>
+        Books Donated
+    </h3>
+    </p>
+    <% user.DonatedBooks.forEach(function (book) { %>
+        <ul>
+            <%= book %>
+           <br>
+        </ul>
+    <% }); %>
+    <br>
+    <a href="/dashboard" class="btn btn-secondary" >Dashboard</a>
+    <br>
+    <br>
+    <a href="/users/logout" class="btn btn-secondary" >Logout</a>
+    <br>
+    <br>
+</div>
