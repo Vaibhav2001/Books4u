@@ -88,6 +88,7 @@ router.post('/donate', ensureAuthenticated, (req, res) => {
             req.flash('success_msg', 'Book Queued for Donation');
             res.redirect('/dashboard');
         });
+
     const newDonatedBooks = req.user.DonatedBooks;
     newDonatedBooks.push(newDonatedBook);
     console.log(newDonatedBooks);
@@ -104,9 +105,9 @@ router.post('/search', ensureAuthenticated, async(req, res) => {
     const { name } = req.body;
     console.log(name);
     var words = name.split(" ");
-    const regex = words.map(e=>new RegExp(e)); // [/Harry/, /Potter/, /Killer/
+    const regex = words.map(e=>new RegExp(e));
     console.log(regex);
-    //I want to get the username and that specific data printed which is inside an array called books
+
     User.find( { books: { $in: regex  } } )
         .then(users => {
             console.log(users);
@@ -115,7 +116,6 @@ router.post('/search', ensureAuthenticated, async(req, res) => {
                 users: users
             })
         });
-    res.render('search')
 });
 
 module.exports = router;
