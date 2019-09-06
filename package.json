@@ -12,7 +12,7 @@
     "url": "https://github.com/Vaibhav2001/ReadSocially.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Vaibhav2001",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Vaibhav2001/ReadSocially/issues"
@@ -34,6 +34,6 @@
     "nodemon": "^1.19.1"
   },
   "engines": {
-    "node": "10.x"
+    "node": "^10.16.3"
   }
 }
