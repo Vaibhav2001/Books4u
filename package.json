@@ -17,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/Vaibhav2001/ReadSocially/issues"
   },
-  "homepage": "https://github.com/Vaibhav2001/ReadSocially#readme",
+  "homepage": "https://github.com/Vaibhav2001/ReadSocially/#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
